@@ -8,15 +8,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class BrickBreakMain extends ApplicationAdapter
 {
-	SpriteBatch batch;
-	Texture img;
+	WorldController worldController;
+	WorldRenderer worldRenderer;
 	
 	@Override
 	public void create ()
 	{
-		//initialize controller and renderer
-		worldController = new WorldController();
-		worldRenderer = new WorldRenderer(worldController);
+		 //initialize controller and renderer
+		 worldController = new WorldController();
+	     worldRenderer = new WorldRenderer(worldController);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class BrickBreakMain extends ApplicationAdapter
 	}
 	public void resize(int width, int height)
 	{
-		worldRenderer.resize(width, height);
+		//worldRenderer.resize(width, height);
 	}
 	public void dispose()
 	{

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Brick" tilewidth="32" tileheight="32">
+  <image source="../../../../Área de Trabalho/Brick.png" width="557" height="347"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3USwqAMAwE0By4919LQUHiZ6cy8h6EQleZDrQKAHjCWCfZaGeiUccuEvLsdx7tLqmXq/fvk+Bsbzm+dbd/Uo7pqoPUHFXZOaY/9DH1nRMzbBL/KQAAAAAA3rcA7ZX6MxAnAAA=
+  </data>
+ </layer>
+</map>

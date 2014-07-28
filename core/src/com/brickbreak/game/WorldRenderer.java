@@ -63,27 +63,33 @@ public class WorldRenderer implements Disposable
 				//camera.update();
 				batch.begin();
 					//batch desenha (sprite,x,y), onde x e y sao eixos das coordenadas
-					batch.draw(worldController.ballsprite,worldController.ball.getBallBoundsXY("x"),worldController.ball.getBallBoundsXY("y"));
+					//batch.draw(worldController.ballsprite,worldController.ball.getBallBoundsXY("x"),worldController.ball.getBallBoundsXY("y"));
 					batch.draw(worldController.groundsprite,worldController.ground.getGroundBoundsXY("x"),worldController.ground.getGroundBoundsXY("y"));
-					/*for(Sprite sprite: worldController.balls)
+					
+					
+					for(Ball ball: worldController.balls)
 					{
-						batch.draw(sprite,5f,5f);
-					}*/
+						if(ball!=null)
+						{
+							batch.draw(ball.getBallSprite(),worldController.ball.getBallBoundsXY("x"),worldController.ball.getBallBoundsXY("y"));
+						}
+						
+					}
 						
 				batch.end();	
 				
 				batch2.begin();
-					font.draw(batch2,"Fps:"+ Gdx.graphics.getFramesPerSecond() ,20,20);
-					font.draw(batch2,"Cam x:"+ camera.viewportWidth ,70,20);
-					font.draw(batch2,"Cam y:"+ camera.viewportHeight ,160,20);
-					font.draw(batch2,"Ground x: "+worldController.ground.getGroundBoundsXY("x") ,270, 20);
-					font.draw(batch2,"Ground y: "+worldController.ground.getGroundBoundsXY("y") ,380, 20);
-					font.draw(batch2,"Ground x: "+worldController.ground.getGroundBounds().getPosition(new Vector2()) ,150, 200);
+					font.draw(batch2,"Fps:"+ Gdx.graphics.getFramesPerSecond() ,0,800);
+					font.draw(batch2,"Cam x:"+ camera.viewportWidth ,50,800);
+					font.draw(batch2,"Cam y:"+ camera.viewportHeight ,140,800);
+					font.draw(batch2,"Ground x: "+worldController.ground.getGroundBoundsXY("x") ,270, 800);
+					font.draw(batch2,"Ground y: "+worldController.ground.getGroundBoundsXY("y") ,380, 800);
+					//font.draw(batch2,"Ground x: "+worldController.ground.getGroundBounds().getPosition(new Vector2()) ,150, 80);
 					//font.draw(batch2,"Ground y: "+worldController.ground.getGroundBoundsXY("y") ,380, 20);
-					font.draw(batch2,"Ball x: "+worldController.ball.getBallBoundsXY("x") ,280, 40);
-					font.draw(batch2,"Ball y: "+worldController.ball.getBallBoundsXY("y") ,385, 40);
-					font.draw(batch2,"Height "+Gdx.graphics.getHeight(),285, 80);
-					font.draw(batch2,"width: "+Gdx.graphics.getWidth(),400, 100);
+					font.draw(batch2,"Ball x: "+worldController.ball.getBallBoundsXY("x") ,270, 780);
+					font.draw(batch2,"Ball y: "+worldController.ball.getBallBoundsXY("y") ,380, 780);
+					font.draw(batch2,"Height "+Gdx.graphics.getHeight(),50, 780);
+					font.draw(batch2,"width: "+Gdx.graphics.getWidth(),140, 780);
 				batch2.end();
 	
 		}

@@ -25,14 +25,26 @@ public class WorldController
 	public Ball ball;
 	public Sprite ballsprite;
 	public Texture balltexture;
-	public Array<Sprite> balls = new Array<Sprite>();
+	public Array<Ball> balls = new Array<Ball>();
 	//ground
 	public Ground ground;
 	public Sprite groundsprite;
 	public Texture groundtexture;
 	
+	/*
+ex:
+  	     ______________
+  (0,20)|			   |
+		|			   |
+		|			   |   ---------------------> IDEIA
+		|			   |
+		|			   |
+		|______________|
+	(0,0)              (20,0)
 	
 	
+	
+	*/
 		//constructor
 		public WorldController()
 		{
@@ -52,9 +64,9 @@ public class WorldController
 		{
 		    ball = new Ball();
 		    	//pode utilizar as duas maneiras
-			 	ballsprite= ball.getBallSprite();	
-			 	balltexture= ball.getBallTexture();
-			 	balls.add(ballsprite);
+			 	//ballsprite= ball.getBallSprite();	
+			 	//balltexture= ball.getBallTexture();
+			 	balls.add(ball);
 			ground = new Ground();
 				groundsprite= ground.getGroundSprite();
 				
@@ -64,84 +76,109 @@ public class WorldController
 		}
 		public void update() //loop
 		{
-			if(Constants.playball==true)
+			for(Ball ball:balls)
 			{
-				ball.setBallBoundsX(5);
-				ball.setBallBoundsY(5);
-				Constants.velx=5;
-				Constants.vely=5;
-			}
-					if(ball.getBallBoundsXY("y")>700)
-					{
-						//bateu em cima
-						Constants.playball=false;
-						Constants.touch=1;	
-						Constants.velx=Constants.velx;
-						Constants.vely=-Constants.vely;
-				
-					}
-					if(ball.getBallBoundsXY("y")<-150)
-					{
-						//bate no chão
-						Constants.playball=false;
-						Constants.touch=0;
-						Constants.velx=Constants.velx;
-						Constants.vely=-Constants.vely;
-						balls.removeIndex(0);
-						
-						
-					}
-					if(ball.getBallBoundsXY("x")<0)
-					{
-						//bateu no lado esquerdo
-						Constants.playball=false;
-						Constants.touch=2;
-						Constants.velx=-Constants.velx;
-						Constants.vely=Constants.vely;
-						
-						
-						
-					}
-					if(ball.getBallBoundsXY("x")>380)
-					{
-						//bateu no lado direito
-						Constants.playball=false;
-						Constants.touch=3;
-						Constants.velx=-Constants.velx;
-						Constants.vely=Constants.vely;
-						
-					}
-					
-				
-					
-					
-				//------------------------------------------------------
-				if(Constants.touch==0)
+				if(Constants.playball==true)
 				{
-					ball.setBallBoundsX(Constants.velx);
-					ball.setBallBoundsY(Constants.vely);		
+					ball.setBallBoundsX(5);
+					ball.setBallBoundsY(5);
+					Constants.velx=5;
+					Constants.vely=5;
 				}
-				if(Constants.touch==1)
-				{			
-					ball.setBallBoundsX(Constants.velx);
-					ball.setBallBoundsY(Constants.vely);	
-				}
-				if(Constants.touch==2)
-				{	
-					ball.setBallBoundsX(Constants.velx);
-					ball.setBallBoundsY(Constants.vely);	
-				}
-				if(Constants.touch==3)
-				{
-					ball.setBallBoundsX(Constants.velx);
-					ball.setBallBoundsY(Constants.vely);	
-				}
-				if(Constants.touch==4)
-				{
-					ball.setBallBoundsX(Constants.velx);
-					ball.setBallBoundsY(Constants.vely);	
-				}
-				
+						if(ball.getBallBoundsXY("y")+20>800)
+						{
+							//bateu em cima
+							Constants.playball=false;
+							Constants.touch=1;	
+							Constants.velx=Constants.velx;
+							Constants.vely=-Constants.vely;
+					
+						}
+					if(ball.getBallBoundsXY("y")<-20)
+						{
+							//bate no chão
+							Constants.playball=false;
+							Constants.touch=0;
+							Constants.velx=Constants.velx;
+							Constants.vely=-Constants.vely;
+							if(balls.get(0)!=null)
+							{
+								System.out.println("removidoooo");
+								balls.removeIndex(0);
+								//ball=null;
+								//balls.get(0).getBallSprite().rotate(50);
+							}
+							
+							
+							
+						}
+						if(ball.getBallBoundsXY("x")<0)
+						{
+							//bateu no lado esquerdo
+							Constants.playball=false;
+							Constants.touch=2;
+							Constants.velx=-Constants.velx;
+							Constants.vely=Constants.vely;
+							
+							
+							
+						}
+						if(ball.getBallBoundsXY("x")+20>480)
+						{
+							//bateu no lado direito
+							Constants.playball=false;
+							Constants.touch=3;
+							Constants.velx=-Constants.velx;
+							Constants.vely=Constants.vely;
+							
+						}
+						
+					
+			}		
+						
+					//------------------------------------------------------
+					if(Constants.touch==0)
+					{		
+						for(Ball ball: balls)
+						{
+							//ball.setBallBoundsX(Constants.velx);
+							//ball.setBallBoundsY(Constants.vely);				
+						}
+					}
+					if(Constants.touch==1)
+					{
+						for(Ball ball: balls)
+						{
+							ball.setBallBoundsX(Constants.velx);
+							ball.setBallBoundsY(Constants.vely);	
+						}
+					}
+					if(Constants.touch==2)
+					{	
+						for(Ball ball: balls)
+						{
+							ball.setBallBoundsX(Constants.velx);
+							ball.setBallBoundsY(Constants.vely);	
+						}
+					}
+					if(Constants.touch==3)
+					{
+						
+						for(Ball ball: balls)
+						{
+							ball.setBallBoundsX(Constants.velx);
+							ball.setBallBoundsY(Constants.vely);	
+						}
+					}
+					if(Constants.touch==4)
+					{
+						for(Ball ball: balls)
+						{
+							ball.setBallBoundsX(Constants.velx);
+							ball.setBallBoundsY(Constants.vely);	
+						}
+					}
+			
 				//System.out.println(" width "+ground.getGroundBounds().width);
 				//System.out.println(" x "+ground.getGroundBounds().x);
 				
@@ -153,52 +190,56 @@ public class WorldController
 					Constants.vely=-Constants.vely;
 					System.out.println("ai meu rim");
 				}*/
-				
-				 if(Intersector.overlaps(ball.getBallBounds(),ground.getGroundBounds()))
-				 {
-					    
-					    Constants.touch=4;
-						Constants.velx=Constants.velx;
-						Constants.vely=-Constants.vely;
-						System.out.println("ai meu rim");
-						
-						//TENHO DE PARAR DE ANDAR COM O GROUND pular -6 em y , para nao bugar
-						//ground.setGroundBoundsY(-6);
-						
-				 }
-				 		 		 
-				 //LADO ESQUERDO DO GROUND
-				 //ground(x1,y1)---------(x2,y2)    //  ball(x3,y3)---------(x4,y4)
-				 //NÃO PODE SER RETAS PARALELAS (ERRO), POIS HÁ VARIOS PONTOS DE INTERSECÇÃO
-				 if(Intersector.intersectSegments(ground.getGroundBoundsXY("x")-20,ground.getGroundBoundsXY("y")+20,
-						 ground.getGroundBoundsXY("x")-10,ground.getGroundBoundsXY("y"),
-						 ball.getBallBoundsXY("x")+100, ball.getBallBoundsXY("y")+100,
-						 ball.getBallBoundsXY("x")+100, ball.getBallBoundsXY("y"), new Vector2()))
-				 {
-					 System.out.println("BATEU NA ESQUERDA");
-					 Constants.touch=2;
-					 Constants.velx=-Constants.velx;
-					 Constants.vely=Constants.vely;
-					//TENHO DE PARAR DE ANDAR COM O GROUND pular 6 em X , para nao bugar
-					 ground.setGroundBoundsX(6);
-				 }
-				 
-				 //LADO DIREITO DO GROUND
-				 //ground(x1,y1)---------(x2,y2)    //  ball(x3,y3)---------(x4,y4)
-				 //NÃO PODE SER RETAS PARALELAS (ERRO), POIS HÁ VARIOS PONTOS DE INTERSECÇÃO
-				 if(Intersector.intersectSegments(ground.getGroundBoundsXY("x")+170,ground.getGroundBoundsXY("y")+20,
-						 ground.getGroundBoundsXY("x")+160,ground.getGroundBoundsXY("y"),
-						 ball.getBallBoundsXY("x"), ball.getBallBoundsXY("y")+100,
-						 ball.getBallBoundsXY("x"), ball.getBallBoundsXY("y"), new Vector2()))
-				 {
-					 System.out.println("BATEU NA DIREITA");
-					 Constants.touch=2;
-					 Constants.velx=-Constants.velx;
-					 Constants.vely=Constants.vely;
-					//TENHO DE PARAR DE ANDAR COM O GROUND pular 6 em X , para nao bugar
-					 ground.setGroundBoundsX(-6);
-				 }
-				
+					
+
+				if(balls.contains(ball, true))
+				{
+					
+					 if(Intersector.overlaps(ball.getBallBounds(),ground.getGroundBounds()))
+					 {
+						    
+						    Constants.touch=4;
+							Constants.velx=Constants.velx;
+							Constants.vely=-Constants.vely;
+							System.out.println("ai meu rim");
+							
+							//TENHO DE PARAR DE ANDAR COM O GROUND pular -6 em y , para nao bugar
+							//ground.setGroundBoundsY(-6);		
+					 }
+					
+					 		 		 
+					 //LADO ESQUERDO DO GROUND
+					 //ground(x1,y1)---------(x2,y2)    //  ball(x3,y3)---------(x4,y4)
+					 //NÃO PODE SER RETAS PARALELAS (ERRO), POIS HÁ VARIOS PONTOS DE INTERSECÇÃO
+					 if(Intersector.intersectSegments(ground.getGroundBoundsXY("x")-20,ground.getGroundBoundsXY("y")+20,
+							 ground.getGroundBoundsXY("x")-10,ground.getGroundBoundsXY("y"),
+							 ball.getBallBoundsXY("x")+100, ball.getBallBoundsXY("y")+100,
+							 ball.getBallBoundsXY("x")+100, ball.getBallBoundsXY("y"), new Vector2()))
+					 {
+						 System.out.println("BATEU NA ESQUERDA");
+						 Constants.touch=2;
+						 Constants.velx=-Constants.velx;
+						 Constants.vely=Constants.vely;
+						//TENHO DE PARAR DE ANDAR COM O GROUND pular 6 em X , para nao bugar
+						 ground.setGroundBoundsX(6);
+					 }
+					 
+					 //LADO DIREITO DO GROUND
+					 //ground(x1,y1)---------(x2,y2)    //  ball(x3,y3)---------(x4,y4)
+					 //NÃO PODE SER RETAS PARALELAS (ERRO), POIS HÁ VARIOS PONTOS DE INTERSECÇÃO
+					 if(Intersector.intersectSegments(ground.getGroundBoundsXY("x")+170,ground.getGroundBoundsXY("y")+20,
+							 ground.getGroundBoundsXY("x")+160,ground.getGroundBoundsXY("y"),
+							 ball.getBallBoundsXY("x"), ball.getBallBoundsXY("y")+100,
+							 ball.getBallBoundsXY("x"), ball.getBallBoundsXY("y"), new Vector2()))
+					 {
+						 System.out.println("BATEU NA DIREITA");
+						 Constants.touch=2;
+						 Constants.velx=-Constants.velx;
+						 Constants.vely=Constants.vely;
+						//TENHO DE PARAR DE ANDAR COM O GROUND pular 6 em X , para nao bugar
+						 ground.setGroundBoundsX(-6);
+					 }
+				}
 			
 			
 			//Interação com o usuário
@@ -250,7 +291,15 @@ public class WorldController
 				if(Gdx.input.isTouched())
 				{
 					//pego a coordenada x da minha sprite
-					ground.setGroundBoundsWithTouch(Gdx.input.getX()-100);
+					if(Gdx.input.getX()-100==ground.getGroundBoundsXY("x")+75)
+					{
+						
+					}
+					else
+					{
+						ground.setGroundBoundsWithTouch(Gdx.input.getX()-100);
+					}
+					
 			
 					//quando a tela for tocada posso ativar o update da bola
 					if(Constants.contplayandroid==0)

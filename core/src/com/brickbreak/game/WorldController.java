@@ -6,6 +6,9 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.Map;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -30,6 +33,8 @@ public class WorldController
 	public Ground ground;
 	public Sprite groundsprite;
 	public Texture groundtexture;
+
+	
 	
 	/*
 ex:
@@ -41,9 +46,30 @@ ex:
 		|			   |
 		|______________|
 	(0,0)              (20,0)
+	 _________________________________________________________________________________________
+	|android:screenOrientation									                              |
+	|The orientation of the activity's display on the device.                                 |
+	|"landscape" ----> "portrait"								                              |
+	|for more:http://developer.android.com/guide/topics/manifest/activity-element.html#screen |
+	|_________________________________________________________________________________________|
 	
+	 _________________________________________________________________________________________
+	|Building Games Using the MVC Pattern – Tutorial and Introduction                         |
+	|			____________																  |
+	|			|controller|																  |
+	|			  /      \																	  |
+	|			 /	      \																	  |
+	|			<	       >																  |
+	|		|view|------->|model|          													  |
+	|								                                                          |
+	|http://obviam.net/index.php/the-mvc-pattern-tutorial-building-games/                     |
+	|_________________________________________________________________________________________|
 	
-	
+	 _____________________________________________________________
+	|LIBGDX API - Overview				                          |
+	|      							                              |
+	|for more:http://libgdx.badlogicgames.com/nightlies/docs/api/ |
+	|_____________________________________________________________|
 	*/
 		//constructor
 		public WorldController()

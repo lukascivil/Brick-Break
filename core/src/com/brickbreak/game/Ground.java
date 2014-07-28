@@ -19,7 +19,7 @@ public class Ground
 	{
 		texture_ground = new Texture(Gdx.files.internal("ground.png"));
 		ground = new Sprite(texture_ground);
-		bounds = new Rectangle(0,0,150,20);
+		bounds = new Rectangle(0,80,150,20);
 		
 		//bounds.setCenter(0, -20);	
 	}

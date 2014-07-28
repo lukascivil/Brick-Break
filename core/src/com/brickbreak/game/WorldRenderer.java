@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
@@ -17,13 +19,16 @@ public class WorldRenderer implements Disposable
 	/** the camera **/
 	protected OrthographicCamera camera;
 	private WorldController worldController;
-	private TiledMap map;
 	
 	private BitmapFont font;
 	
 	SpriteBatch batch;
 	SpriteBatch batch2;
 	private Rectangle glViewport;
+	
+	//TiledMap
+	public TiledMap map;
+	public OrthogonalTiledMapRenderer renderer;
 	
 		public WorldRenderer(WorldController worldController)
 		{
@@ -43,7 +48,11 @@ public class WorldRenderer implements Disposable
 			camera = new OrthographicCamera(480, 800); 
 			camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 			camera.position.set(Gdx.graphics.getWidth() / 2+100000, Gdx.graphics.getHeight() / 2, 0);
+			
 			glViewport = new Rectangle(0, 0, 480, 800);
+			
+			map = new TmxMapLoader().load("map.tmx");
+			renderer = new OrthogonalTiledMapRenderer(map);
 		}
 		
 		// método que irá conter a lógica de definir qual ordem do jogo
@@ -59,9 +68,13 @@ public class WorldRenderer implements Disposable
 		private void renderTestObjects()
 		{
 				// clear the screen and setup the projection matrix
+				Gdx.gl.glClearColor(0, 0, 0, 1);
 				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-				//camera.update();
-				batch.begin();
+				camera.update();
+				renderer.setView(camera);
+				renderer.render();
+				
+			/*	batch.begin();
 					//batch desenha (sprite,x,y), onde x e y sao eixos das coordenadas
 					//batch.draw(worldController.ballsprite,worldController.ball.getBallBoundsXY("x"),worldController.ball.getBallBoundsXY("y"));
 					batch.draw(worldController.groundsprite,worldController.ground.getGroundBoundsXY("x"),worldController.ground.getGroundBoundsXY("y"));
@@ -91,7 +104,8 @@ public class WorldRenderer implements Disposable
 					font.draw(batch2,"Height "+Gdx.graphics.getHeight(),50, 780);
 					font.draw(batch2,"width: "+Gdx.graphics.getWidth(),140, 780);
 				batch2.end();
-	
+				*/
+				
 		}
 
 		@Override
@@ -99,5 +113,7 @@ public class WorldRenderer implements Disposable
 		{
 			//Objects dispose
 			 worldController.dispose();
+			 renderer.dispose();
+			 map.dispose();
 		}
 }

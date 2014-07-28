@@ -19,7 +19,7 @@ public class Ball
 	{
 		texture_ball = new Texture(Gdx.files.internal("ball2p.png"));
 		ball = new Sprite(texture_ball);
-		bounds = new Rectangle(0,50,20,20);
+		bounds = new Rectangle(0,100,20,20);
 		
 		
 
